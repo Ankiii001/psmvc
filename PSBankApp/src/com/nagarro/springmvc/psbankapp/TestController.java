@@ -15,7 +15,8 @@ public class TestController {
 		}
 
 	@RequestMapping(value= "/name")
-	public String methodWithParams(@RequestParam String userName, Model model) {
+	public String methodWithParams(@RequestParam(value="userName" , required=false)
+	String userName, Model model) {
 	model.addAttribute("userName",userName);	
 	System.out.println("Page requested by " + userName);
 	return "testRequestmapping";
