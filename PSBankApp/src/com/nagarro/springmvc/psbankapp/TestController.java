@@ -23,7 +23,7 @@ public class TestController {
 		return "testRequestmapping";
 	}
 	
-	@RequestMapping(value = "/dynamic/{userName}")
+	@RequestMapping(value = "/dynamic/{category:[a-z]+}/{userName}")
 	public String dynamicURL(@PathVariable("userName") String userName) {
 		return "testRequestmapping";
 	}
