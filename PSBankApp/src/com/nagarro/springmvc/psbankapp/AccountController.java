@@ -27,8 +27,7 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/saveAccount", method = RequestMethod.POST)
-	public String saveAccount(Model model, 
-		Account account) {
+	public String saveAccount(Model model, Account account) {
 		
 		model.addAttribute("account", account);
 		
