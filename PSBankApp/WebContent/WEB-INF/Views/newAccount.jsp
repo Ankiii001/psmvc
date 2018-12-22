@@ -1,35 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title><spring:message code="lbl.title"/></title>
+<title>PS Bank Application</title>
 </head>
 <body>
 	<h2>Create New Account</h2>
-	<form:form action="saveAccount" modelAttribute="account">
+	<form name="accountForm" action="saveAccount" method="post">
 		<table>
 			<tr>
-				<td><spring:message code="lbl.accountNo"></spring:message></td>
-				<td><form:input path="accountNo" size="30"/></td>
+				<td>Account No : </td>
+				<td><input type="text" name="accountNo"/></td>
 			</tr>
 			<tr>
-				<td><spring:message code="lbl.accountHolderName"></spring:message></td>
-				<td><form:input path="accountHolderName" size="30"/></td>
+				<td>Account Holder Name : </td>
+				<td><input type="text" name="accountHolderName"/></td>
 			</tr>
 			<tr>
-				<td><spring:message code="lbl.balance"></spring:message></td>
-				<td><form:input path="balance" size="30"/></td>
+				<td>Account Balance : </td>
+				<td><input type="text" name="balance"/></td>
 			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Create Account" name="btnSubmit" /></td>
+			<tr><td colspan="2" align="center">
+			<input type="submit" value="Create Account" name="btnSubmit" /></td>
 			</tr>
 		</table>
-	</form:form>
+	</form>
 
 </body>
 </html>
