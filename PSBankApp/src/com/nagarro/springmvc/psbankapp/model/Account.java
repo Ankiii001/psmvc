@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.nagarro.springmvc.psbankapp.validations.PSCode;
+
 public class Account {
 	@NotNull(message = "Account# can't be blank")
 	private Integer accountNo;
@@ -32,6 +34,7 @@ public class Account {
 	private String accountType;
 
 	@NotNull(message = "PS Code is required")
+	@PSCode
 	private String psCode;
 
 	public Account() {
