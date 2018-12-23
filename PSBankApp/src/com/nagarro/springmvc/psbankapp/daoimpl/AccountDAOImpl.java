@@ -1,7 +1,11 @@
 package com.nagarro.springmvc.psbankapp.daoimpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +39,31 @@ public class AccountDAOImpl implements AccountDAO{
 			saveFlag = false;
 		}
 		return saveFlag;
+	}
+
+	@Override
+	public List<Account> getAccounts() {
+		List<Account> list = new ArrayList<Account>();
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Query<AccountEntity> query = session.createQuery("From AccountEntity",AccountEntity.class);
+			List<AccountEntity> accounts = query.getResultList();
+			
+			for(int i = 0; i < accounts.size(); i++) {
+				AccountEntity accountEntity = (AccountEntity) accounts.get(i);
+				Account account = new Account();
+				account.setAccountNo(accountEntity.getAccNo());
+				account.setBalance(accountEntity.getBalance());
+				account.setAccountHolderName(accountEntity.getAccHolderName());
+				account.setAccountType(accountEntity.getAccountType());
+				account.setPsCode(accountEntity.getPsCode());
+				account.setDateOfBirth(accountEntity.getDateOfBirth());
+				list.add(account);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 

@@ -1,5 +1,7 @@
 package com.nagarro.springmvc.psbankapp;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +57,13 @@ public class AccountController {
 			accountService.saveAccount(account);
 			return "redirect:/list";
 		}
+	}
+	
+	@GetMapping("/list")
+	public String listAccounts(Model model) {
+		List<Account> accounts = accountService.getAccounts();
+		model.addAttribute("accounts", accounts);
+		return "listAccounts";
 	}
 
 	@RequestMapping("*")
