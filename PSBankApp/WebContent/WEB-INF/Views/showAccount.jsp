@@ -8,9 +8,12 @@
 </head>
 <body>
 	<h2>PS: Bank Account Details</h2>
- 	<p>Account # : ${account.accountNo}</p>
+	<p>Account # : ${account.accountNo}</p>
 	<p>Account Holder Name : ${account.accountHolderName}</p>
-	<p>Balance : ${account.balance}</p> 
-	
+	<p>Account type : : ${account.accountType}</p>
+	<p>Balance : ${account.balance}</p>
+	<p>PS Code : ${account.psCode}</p>
+	<p>Date Of Birth : ${account.dateOfBirth}</p>
+
 </body>
 </html>
