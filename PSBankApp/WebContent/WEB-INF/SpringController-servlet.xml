@@ -37,6 +37,7 @@
 		<property name="defaultLocale" value="en"></property>
 	</bean>
 	
+	<!-- Setting up hibernate -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 	 destroy-method="close">
 	 <property name="driverClass" value="com.mysql.jdbc.Driver"/>
