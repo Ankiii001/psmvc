@@ -34,7 +34,7 @@ public class Account {
 	private String accountType;
 
 	@NotNull(message = "PS Code is required")
-	@PSCode
+	@PSCode(value="PSUA",message="PS Code Should Start with PSUA")
 	private String psCode;
 
 	public Account() {
