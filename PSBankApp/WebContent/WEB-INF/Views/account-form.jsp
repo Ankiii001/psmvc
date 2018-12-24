@@ -20,7 +20,8 @@
 			<tr>
 				<td>Account No :</td>
 				<td><form:input path="accountNo" size="30" /> <form:errors
-						path="accountNo" cssClass="error"></form:errors></td>
+						path="accountNo" cssClass="error"></form:errors>
+						<b><font color="red">${message}</font></b></td>
 			</tr>
 			<tr>
 				<td>Account Holder Name :</td>

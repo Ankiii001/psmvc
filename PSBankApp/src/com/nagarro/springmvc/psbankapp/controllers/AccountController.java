@@ -1,4 +1,4 @@
-package com.nagarro.springmvc.psbankapp;
+package com.nagarro.springmvc.psbankapp.controllers;
 
 import java.util.List;
 
@@ -50,12 +50,24 @@ public class AccountController {
 
 	@RequestMapping(value = "/saveAccount", method = RequestMethod.POST)
 	public String saveAccount(@Valid @ModelAttribute("account") Account account,
-			BindingResult result) {
+			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 			return "account-form";
 		} else {
-			accountService.saveAccount(account);
+			String message = "";
+			boolean flag = true;
+			try {
+				flag = accountService.saveAccount(account);
+			} catch (Exception e) {
+				message = e.getMessage();
+				flag = false;
+			}
+			if(!flag) {
+				model.addAttribute("message",message);
+				return "account-form";
+			}
+			model.addAttribute("account",account);
 			return "redirect:/list";
 		}
 	}
@@ -81,7 +93,6 @@ public class AccountController {
 		return "redirect:/list";
 		
 	}
-	
 	
 	@RequestMapping("*")
 	public String fallBackPage() {

@@ -1,4 +1,4 @@
-package com.nagarro.springmvc.psbankapp;
+package com.nagarro.springmvc.psbankapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
