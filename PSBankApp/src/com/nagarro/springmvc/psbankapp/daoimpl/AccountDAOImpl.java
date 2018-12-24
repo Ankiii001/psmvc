@@ -32,7 +32,7 @@ public class AccountDAOImpl implements AccountDAO{
 		
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
-			currentSession.save(accountEntity);
+			currentSession.saveOrUpdate(accountEntity);
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -64,6 +64,38 @@ public class AccountDAOImpl implements AccountDAO{
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public Account getAccount(Integer accountNo) {
+		Account account = new Account();
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			AccountEntity accountEntity = (AccountEntity) session.load(AccountEntity.class, accountNo);
+			account.setAccountNo(accountEntity.getAccNo());
+			account.setBalance(accountEntity.getBalance());
+			account.setAccountHolderName(accountEntity.getAccHolderName());
+			account.setAccountType(accountEntity.getAccountType());
+			account.setPsCode(accountEntity.getPsCode());
+			account.setDateOfBirth(accountEntity.getDateOfBirth());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return account;
+	}
+
+	@Override
+	public boolean deleteAccount(int accountNo) {
+		boolean deleteFlag=true;
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			AccountEntity accountEntity = (AccountEntity) session.load(AccountEntity.class, accountNo);
+			session.delete(accountEntity);
+		} catch (Exception e) {
+			e.printStackTrace();
+			deleteFlag = false;
+		}
+		return deleteFlag;
 	}
 	
 

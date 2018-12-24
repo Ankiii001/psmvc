@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nagarro.springmvc.psbankapp.model.Account;
 import com.nagarro.springmvc.psbankapp.services.AccountService;
@@ -66,6 +67,22 @@ public class AccountController {
 		return "listAccounts";
 	}
 
+	@GetMapping("/edit")
+	public String updateAccount(@RequestParam("accountNo") int accountNo, Model model) {
+		Account account = accountService.getAccount(new Integer(accountNo));
+		model.addAttribute("account", account);
+		return "account-form";
+		
+	}
+	
+	@GetMapping("/delete")
+	public String deleteAccount(@RequestParam("accountNo") int accountNo, Model model) {
+		accountService.deleteAccount(accountNo);
+		return "redirect:/list";
+		
+	}
+	
+	
 	@RequestMapping("*")
 	public String fallBackPage() {
 		return "fileNotFound";

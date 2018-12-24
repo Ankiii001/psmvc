@@ -15,15 +15,30 @@
 				<th>Account Holder Name</th>
 				<th>Account type</th>
 				<th>Balance</th>
+				<th> &nbsp; </th>
+				<th> &nbsp; </th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="account" items="${accounts}">
+			<c:url var="updateLink" value ="/edit">
+			<c:param name="accountNo" value = "${account.accountNo}"/>
+			</c:url>
+			
+			<c:url var="deleteLink" value ="/delete">
+			<c:param name="accountNo" value = "${account.accountNo}"/>
+			</c:url>
+			
+			
 			<tr>
 				<th>${account.accountNo}</th>
 				<th>${account.accountHolderName}</th>
 				<th>${account.accountType}</th>
 				<th>${account.balance}</th>
+				<th><a href="${updateLink}">Edit</a></th>
+				<th><a href="${deleteLink}"
+				onClick="if(!(confirm('Are you sure to delete'))) return false">
+				Delete</a></th>
 			</tr>
 		</c:forEach>
 	</tbody>
